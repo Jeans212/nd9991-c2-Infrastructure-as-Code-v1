@@ -466,7 +466,7 @@ Resources:
         - Key: Name
           Value: !Sub "${EnvironmentName}-JumpboxSecGroup"
 
-  JumpboxHost:
+  JumpboxHost1:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-0cff7528ff583bf9a
@@ -477,7 +477,20 @@ Resources:
         - !Ref JumpboxSecGroup
       Tags:
         - Key: Name
-          Value: !Sub "${EnvironmentName}-JumpboxHost"
+          Value: !Sub "${EnvironmentName}-JumpboxHost2"
+
+  JumpboxHost2:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0cff7528ff583bf9a
+      InstanceType: t2.micro
+      KeyName: !Ref JumpboxKey
+      SubnetId: !Ref PublicSubnet2
+      SecurityGroupIds:
+        - !Ref JumpboxSecGroup
+      Tags:
+        - Key: Name
+          Value: !Sub "${EnvironmentName}-JumpboxHost2"
 
 Outputs:
   URL:
